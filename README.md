@@ -1,6 +1,5 @@
-This module will generate DAL c++ code from a semi-generic sql statements.
-
-To execute try:
+#SqlToDal
+Parse SQL statements into an abstract syntax tree (AST), then generate corresponding data abstration language (DAL) code.
 
 :>SqlToDal.py
 

@@ -1,17 +1,17 @@
-"""SqlParser.py 
+"""sqlparser.py
 Author Jonathan Rice
 
 This parses a SQL select, update, delete, or insert statement
 """
 import sys
-import ply.lex as lex
 import ply.yacc as yacc
 
-from SqlTokeniser import *
-from SqlAbstractSyntaxTree import *
+from sqltokeniser import *
+from sqlabstractsyntaxtree import *
 
 # Error rule for syntax errors
 def p_error(p):
+    """Prints error messages and exits the program."""
     print "Syntax error in input! " + str(p)
     print """You have managed to break the program, if you are using
 a valid SQL statement please send the statement to
@@ -204,7 +204,7 @@ def p_operand_quoted(p):
     unQuotedStr = p[1]
     unQuotedStr = unQuotedStr[1:]
     unQuotedStr = unQuotedStr[0:len(unQuotedStr) - 1]
-    p[0] = InputVariable(unQuotedStr) #p[0] = p[1] #TODO add support for DALInputHostVar
+    p[0] = InputVariable(unQuotedStr) #p[0] = p[1] 
 
 def p_optional_for_update(p):
     """forupdate : FOR UPDATE
@@ -258,13 +258,3 @@ def makeSQLLower(sql):
 
 def GetASTFromSql(sql):
     return yacc.parse(makeSQLLower(sql))
-#blah = yacc.parse("select sum(distinct(boo.boo)), foo.foo, avg(rar.rar) from dual, user_master, foo where boo.boo is not null and foo.foo = 'fooya' and boo.boo = foo.foo and foo.foo in (select moo.moo from boo) order by foo.foo")
-#blah = yacc.parse("update tablename set foo.boo = 'foo', moo.moo = 300, arg.marg = 'large.farge' where boo.boo = foo.foo")
-#blah = yacc.parse("delete from boo where boo.boo = foo.foo")
-#blah = yacc.parse("insert into table (table.boo, table.moo, table.goo) values ('1020232', 3340, '102320')")
-
-#print blah.AssignList.GetArrayFromList()[1].GetAssignmentValue()
-#print blah.children[1].type
-#print blah.children[3].GetFromList()
-#print blah.children[1].GetArrayFromList()
-#print blah.children[4].GetConditionJoinArray()

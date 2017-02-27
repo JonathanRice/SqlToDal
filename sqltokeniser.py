@@ -1,4 +1,4 @@
-"""SqlTokeniser.py 
+"""sqltokeniser.py
 Author Jonathan Rice
 
 This tokenises a SQL select, update, delete, or insert statement

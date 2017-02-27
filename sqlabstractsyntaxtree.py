@@ -1,11 +1,11 @@
-"""SqlAbstractSyntaxTree.py 
+"""sqlabstractsyntaxtree.py
 Author Jonathan Rice
 
 This will define the classes and structures that will make up a SQL abstract syntax tree"""
 
 class Node:
     """This is the fundamental unit of the abstract syntax tree."""
-    def __init__(self,type = 'NoType' ,children=None,leaf=None):
+    def __init__(self, type='NoType', children=None, leaf=None):
          self.type = type
          if children:
               self.children = children
